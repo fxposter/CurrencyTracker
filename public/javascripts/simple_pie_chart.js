@@ -77,4 +77,5 @@ $(document).ready(function() {
   $('.simple_pie_chart').each(function() {
     SimplePieChart.initialize(this);
   });
-})
+});
+

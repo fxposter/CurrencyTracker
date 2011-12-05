@@ -8,12 +8,17 @@ Feature: Manage countries
   
   Scenario: List Countries
     Given the following countries exist:
-      |name|code|visited|
-      |CountryOne|c1|false|
-      |CountryTwo|c2|false|
-      |CountryThree|c3|true|
-      |CountryFour|c4|true|
-      |CountryFive|c5|true|
+      |name|code|
+      |CountryOne|c1|
+      |CountryTwo|c2|
+      |CountryThree|c3|
+      |CountryFour|c4|
+      |CountryFive|c5|
+    And I visited some countries:
+      |code|
+      |c3|
+      |c4|
+      |c5|
     And I am on the countries page
     Then I should see the following table:
       |Name|Code|Status|

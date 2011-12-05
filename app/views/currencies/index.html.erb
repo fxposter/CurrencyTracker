@@ -12,8 +12,10 @@
   </div>
 
   <h1>Currencies</h1>
-
-  <table>
+  
+  <div class="filter"><input type="text" id="filter_currency_name"></div>
+  
+  <table id="currencies">
     <tr>
       <th>Name</th>
       <th>Code</th>
@@ -23,9 +25,9 @@
 
   <% @currencies.each do |currency| %>
     <tr>
-      <td><%= currency.name %></td>
+      <td class="name"><%= currency.name %></td>
       <td><%= currency.code %></td>
-      <td><%= currency.collected? ? 'Collected' : 'Not Collected' %></td>
+      <td><%= current_user.collected?(currency) ? 'Collected' : 'Not Collected' %></td>
       <td><%= link_to 'Show', currency %></td>
     </tr>
   <% end %>

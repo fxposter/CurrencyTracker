@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
     visited_countries.include?(country)
   end
   
+  def collected?(currency)
+    visited?(currency.country)
+  end
+  
   def visited_countries_count
     visited_countries.count
   end
