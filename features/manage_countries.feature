@@ -3,6 +3,9 @@ Feature: Manage countries
   Mr. Smart
   wants to manage the countries he has visited.
   
+  Background:
+    Given I am a logged in user
+  
   Scenario: List Countries
     Given the following countries exist:
       |name|code|visited|

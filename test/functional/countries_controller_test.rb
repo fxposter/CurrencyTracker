@@ -4,6 +4,7 @@ class CountriesControllerTest < ActionController::TestCase
   should_not_respond_to_actions :new => :get, :destroy => :get
 
   setup do
+    sign_in users(:one)
     @country = countries(:one)
   end
 

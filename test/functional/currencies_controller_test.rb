@@ -8,6 +8,7 @@ class CurrenciesControllerTest < ActionController::TestCase
                                 :update => :put
 
   setup do
+    sign_in users(:one)
     @currency = currencies(:one)
   end
 

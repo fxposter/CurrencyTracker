@@ -1,4 +1,5 @@
 Given /the following countries exist:/ do |countries|
+  Country.destroy_all
   Country.create!(countries.hashes)
 end
 
