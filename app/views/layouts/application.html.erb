@@ -8,6 +8,9 @@
 </head>
 <body>
 
+<% if notice.present? %><p class="notice"><%= notice %></p><% end %>
+<% if alert.present? %><p class="alert"><%= alert %></p><% end %>
+
 <header>
   <h1>CurrencyTracker</h1>
   <nav>

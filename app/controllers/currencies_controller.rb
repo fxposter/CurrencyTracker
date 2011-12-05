@@ -2,7 +2,7 @@ class CurrenciesController < ApplicationController
   # GET /currencies
   # GET /currencies.xml
   def index
-    @currencies = Currency.all
+    @currencies = Currency.includes(:country)
 
     respond_to do |format|
       format.html # index.html.erb

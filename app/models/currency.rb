@@ -9,11 +9,11 @@ class Currency < ActiveRecord::Base
   belongs_to :country
 
   def self.collected
-    all.select {|currency| currency.collected? }
+    joins(:country).where(:countries => { :visited => true })
   end
 
   def self.not_collected
-    all.reject {|currency| currency.collected? }
+    joins('LEFT JOIN "countries" ON "countries"."code" = "currencies"."country_id"').where('"countries"."code" IS NULL OR "countries"."visited" = \'f\'')
   end
 
   def collected?
