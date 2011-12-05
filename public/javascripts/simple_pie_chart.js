@@ -72,10 +72,3 @@ SimplePieChart.initialize = function(root_element) { return new ViewController(r
     return raw_value / this.raw_total();
   }
 })};
-
-$(document).ready(function() {
-  $('.simple_pie_chart').each(function() {
-    SimplePieChart.initialize(this);
-  });
-});
-

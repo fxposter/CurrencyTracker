@@ -7,6 +7,9 @@ TableFilter.initialize = function(table, class_for_filtering, input_to_bind) {
       this.input_to_bind = $(input_to_bind);
       this._bind();
     },
+    unbind: function() {
+      this.input_to_bind.unbind('input.table_filter change.table_filter')
+    },
     _filter: function(value) {
       this.rows.hide();
       this._findElementsToShow(value).closest('tr').show();
@@ -19,12 +22,7 @@ TableFilter.initialize = function(table, class_for_filtering, input_to_bind) {
       this._filter(value);
     },
     _bind: function() {
-      this.input_to_bind.bind('input change', this._filterEvent).trigger('change');
+      this.input_to_bind.bind('input.table_filter change.table_filter', this._filterEvent).trigger('change.table_filter');
     }
   });
-}
-
-$(document).ready(function() {
-  TableFilter.initialize($('#countries'), 'name', $('#filter_country_name'));
-  TableFilter.initialize($('#currencies'), 'name', $('#filter_currency_name'));
-});
+};
