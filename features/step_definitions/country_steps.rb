@@ -1,6 +1,12 @@
 Given /the following countries exist:/ do |countries|
   Country.destroy_all
-  Country.create!(countries.hashes)
+  countries.hashes.each do |country_hash|
+    visited = country_hash.delete('visited')
+    country = Country.create!(country_hash)
+    if visited == "true"
+      @current_user.visited_countries << country
+    end
+  end
 end
 
 Then /^I should see the following table:$/ do |expected_table|

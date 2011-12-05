@@ -1,6 +1,6 @@
 class Country < ActiveRecord::Base
   set_primary_key :code
-  attr_accessible :name, :code, :visited
+  attr_accessible :name, :code
 
   validates_presence_of :name
   validates_presence_of :code
@@ -9,7 +9,4 @@ class Country < ActiveRecord::Base
   has_many :currencies
 
   accepts_nested_attributes_for :currencies, :allow_destroy => true
-
-  scope :visited, :conditions => { :visited => true }
-  scope :not_visited, :conditions => { :visited => false }
 end

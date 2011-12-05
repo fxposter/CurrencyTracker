@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205075421) do
+ActiveRecord::Schema.define(:version => 20111205083657) do
 
   create_table "countries", :id => false, :force => true do |t|
     t.string   "name"
@@ -45,5 +45,12 @@ ActiveRecord::Schema.define(:version => 20111205075421) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "visits", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.string  "country_code"
+  end
+
+  add_index "visits", ["user_id", "country_code"], :name => "index_visits_on_user_id_and_country_code", :unique => true
 
 end
