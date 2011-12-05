@@ -1,0 +1,17 @@
+<%= form_tag country_visit_path(country), :method => :put do %>
+  <div class="field">
+    <div>Country Name</div>
+    <div><%= country %></div>
+  </div>
+  <div class="field">
+    <div>Country Code</div>
+    <div><%= country.code %></div>
+  </div>
+  <div class="field">
+    <%= label_tag :visited %><br />
+    <%= check_box_tag :visited, '1', current_user.visited?(country) %>
+  </div>
+  <div class="actions">
+    <%= submit_tag 'Update Country' %>
+  </div>
+<% end %>

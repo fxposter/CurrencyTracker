@@ -12,7 +12,7 @@
 
 <p>
   <b>Status:</b>
-  <%= @country.visited? ? 'Visited' : 'Not Visited' %>
+  <%= current_user.visited?(@country) ? 'Visited' : 'Not Visited' %>
 </p>
 
 <p>
@@ -24,5 +24,5 @@
   </ul>
 </p>
 
-<%= link_to 'Edit', edit_country_path(@country) %> |
+<%= link_to 'Edit', edit_country_visit_path(@country) %> |
 <%= link_to 'Back', countries_path %>
