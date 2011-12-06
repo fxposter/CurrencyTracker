@@ -1,11 +1,12 @@
 var TableFilter = {};
-TableFilter.initialize = function(table, class_for_filtering, input_to_bind) {
+TableFilter.initialize = function(table, class_for_filtering, input_to_bind, callback) {
   return new ViewController($(table), {
     initialize: function() {
-      this.rows = this.root.find('tr');
+      this.rows = this.root.find('tbody tr');
       this.elements_for_filtering = this.root.find('.' + class_for_filtering);
       this.input_to_bind = $(input_to_bind);
-      this._bind();
+      this.callback = callback;
+      this._bind();    
     },
     unbind: function() {
       this.input_to_bind.unbind('input.table_filter change.table_filter')
@@ -13,6 +14,9 @@ TableFilter.initialize = function(table, class_for_filtering, input_to_bind) {
     _filter: function(value) {
       this.rows.hide();
       this._findElementsToShow(value).closest('tr').show();
+      if (this.callback) {
+        this.callback(this.root);
+      }
     },
     _findElementsToShow: function(value) {
       return this.elements_for_filtering.filter(":contains('" + value + "')");

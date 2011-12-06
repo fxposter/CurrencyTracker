@@ -6,6 +6,8 @@ CurrencyTracker::Application.routes.draw do
   resources :countries, :only => [:index, :show] do
     resource :visit, :only => [:edit, :update]
   end
+  
+  put 'visits/bulk' => 'visits#bulk_update', :as => :bulk_update_visits
 
   resources :currencies, :only => [:index, :show]
 

@@ -27,6 +27,26 @@ Feature: Manage countries
       |CountryThree|c3|Visited|
       |CountryFour|c4|Visited|
       |CountryFive|c5|Visited|
+      
+  Scenario: Visit Countries
+    Given the following countries exist:
+      |name|code|
+      |CountryOne|c1|
+      |CountryTwo|c2|
+      |CountryThree|c3|
+      |CountryFour|c4|
+      |CountryFive|c5|
+    And I am on the countries page
+    When I check "country_c3"
+    And I check "country_c4"
+    And I press "Visit"
+    Then I should see the following table:
+      |Name|Code|Status|
+      |CountryOne|c1|Not Visited|
+      |CountryTwo|c2|Not Visited|
+      |CountryThree|c3|Visited|
+      |CountryFour|c4|Visited|
+      |CountryFive|c5|Not Visited|
 
   Scenario: Visit Country
     Given I am on a country page

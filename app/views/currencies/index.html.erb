@@ -1,35 +1,35 @@
 <section>
-  <div id="collected_currencies_chart" class="simple_pie_chart" width='300px' height='100px'>
-    <table>
-      <tr>
-        <th>Collected</th>
-        <td><%= current_user.collected_currencies_count %></td>
-      </tr><tr>
-        <th>Not Collected</th>
-        <td><%= current_user.not_collected_currencies_count %></td>
-      </tr>
-    </table>
-  </div>
+  <div id="collected_currencies_chart" class="simple_pie_chart" width="300" height="100"></div>
 
   <h1>Currencies</h1>
   
-  <div class="filter"><input type="text" id="filter_currency_name"></div>
+  <%= form_tag bulk_update_visits_path, :method => :put, :id => 'visits_form' do %>
+    <div class="filter">
+      <div>Name: <input type="text" id="filter_currency_name"></div>
+      <div><input type="submit" value="Collect"></div>
+    </div>
   
-  <table id="currencies">
-    <tr>
-      <th>Name</th>
-      <th>Code</th>
-      <th>Status</th>
-      <th></th>
-    </tr>
-
-  <% @currencies.each do |currency| %>
-    <tr>
-      <td class="name"><%= currency.name %></td>
-      <td><%= currency.code %></td>
-      <td><%= current_user.collected?(currency) ? 'Collected' : 'Not Collected' %></td>
-      <td><%= link_to 'Show', currency %></td>
-    </tr>
+    <table id="currencies">
+      <thead>
+        <tr>
+          <th><%= check_all_tag %></th>
+          <th>Name</th>
+          <th>Code</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @currencies.each do |currency| %>
+          <tr id="currency_<%= currency.id %>">
+            <td><%= check_tag currency.country_id, current_user.collected?(currency) %></td>
+            <td class="name"><%= currency.name %></td>
+            <td><%= currency.code %></td>
+            <td class="status"><%= current_user.collected?(currency) ? 'Collected' : 'Not Collected' %></td>
+            <td><%= link_to 'Show', currency %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   <% end %>
-  </table>
 </section>

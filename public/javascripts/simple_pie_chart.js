@@ -4,23 +4,32 @@
 
 var SimplePieChart = {};
 
-SimplePieChart.initialize = function(root_element) { return new ViewController(root_element, {
+SimplePieChart.initialize = function(root_element, source) { return new ViewController(root_element, {
   initialize: function() {
-    this.sets = {};
     this.width  = parseInt( this.root.getAttribute('width') );
     this.height = parseInt( this.root.getAttribute('height') );
-
-    var sets = $(this.root).find('tr');
-    for( var i = 0; i < sets.length; i++ ) {
-      var set_name = $(sets[i]).find('th').html();
-      var set_value = parseInt( $(sets[i]).find('td').html() );
-      this.sets[set_name] = set_value;
-    }
-
+    this.source = $(source);
     this.render();
+  },
+  
+  make_sets: function() {
+    this.sets = {};
+    var sets = this.source;
+    for( var i = 0; i < sets.length; i++ ) {
+      var name = $(sets[i]).text();
+      this.sets[name] = this.sets[name] ? this.sets[name] + 1 : 1;
+    }
+    // var sets = $(this.root).find('tr');
+    //     for( var i = 0; i < sets.length; i++ ) {
+    //       var set_name = $(sets[i]).find('th').html();
+    //       var set_value = parseInt( $(sets[i]).find('td').html() );
+    //       this.sets[set_name] = set_value;
+    //     }
   },
 
   render: function() {
+    this.make_sets();
+    
     $(this.root).html('');
 
     var img = document.createElement('img');

@@ -1,37 +1,38 @@
 <section>
-  <div id="visited_countries_chart" class="simple_pie_chart" width='300px' height='100px'>
-    <table>
-      <tr>
-        <th>Visited</th>
-        <td><%= current_user.visited_countries_count %></td>
-      </tr><tr>
-        <th>Not Visited</th>
-        <td><%= current_user.not_visited_countries_count %></td>
-      </tr>
-    </table>
-  </div>
+  <div id="visited_countries_chart" class="simple_pie_chart" width="300" height="100"></div>
 
   <h1>Countries</h1>
   
-  <div class="filter"><input type="text" id="filter_country_name"></div>
-  
-  <table id="countries">
-    <tr>
-      <th>Name</th>
-      <th>Code</th>
-      <th>Status</th>
-      <th></th>
-      <th></th>
-    </tr>
+  <%= form_tag bulk_update_visits_path, :method => :put, :id => 'visits_form' do %>
+    <div class="filter">
+      <div>Name: <input type="text" id="filter_country_name"></div>
+      <div><input type="submit" value="Visit"></div>
+    </div>
+    
+    <table id="countries">
+      <thead>
+        <tr>
+          <th><%= check_all_tag %></th>
+          <th>Name</th>
+          <th>Code</th>
+          <th>Status</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <% @countries.each do |country| %>
-    <tr>
-      <td class="name"><%= country.name %></td>
-      <td><%= country.code %></td>
-      <td><%= current_user.visited?(country) ? 'Visited' : 'Not Visited' %></td>
-      <td><%= link_to 'Show', country %></td>
-      <td><%= link_to 'Edit', edit_country_visit_path(country) %></td>
-    </tr>
+      <tbody>
+        <% @countries.each do |country| %>
+          <tr>
+            <td><%= check_tag country.id, current_user.visited?(country) %></td>
+            <td class="name"><%= country.name %></td>
+            <td><%= country.code %></td>
+            <td class="status"><%= current_user.visited?(country) ? 'Visited' : 'Not Visited' %></td>
+            <td><%= link_to 'Show', country %></td>
+            <td><%= link_to 'Edit', edit_country_visit_path(country) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   <% end %>
-  </table>
 </section>
