@@ -11,6 +11,13 @@
 <% if notice.present? %><p class="notice"><%= notice %></p><% end %>
 <% if alert.present? %><p class="alert"><%= alert %></p><% end %>
 
+<% if user_signed_in? %>
+  Hello, <%= current_user %>.
+  You can <%= link_to 'logout', destroy_user_session_path %> or
+  <%= link_to 'edit your information', edit_user_registration_path %>.
+<% end %>
+  
+
 <header>
   <h1>CurrencyTracker</h1>
   <nav>

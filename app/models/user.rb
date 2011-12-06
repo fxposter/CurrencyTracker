@@ -41,4 +41,8 @@ class User < ActiveRecord::Base
   def not_collected_currencies_count
     Currency.count - collected_currencies_count
   end
+  
+  def to_s
+    email
+  end
 end
