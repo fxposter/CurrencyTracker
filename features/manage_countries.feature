@@ -28,6 +28,7 @@ Feature: Manage countries
       |CountryFour|c4|Visited|
       |CountryFive|c5|Visited|
       
+  @javascript
   Scenario: Visit Countries
     Given the following countries exist:
       |name|code|

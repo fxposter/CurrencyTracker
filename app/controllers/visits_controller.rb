@@ -4,7 +4,7 @@ class VisitsController < ApplicationController
 
   def update
     if params[:visited] == "1"
-      current_user.visited_countries << country
+      current_user.visited_countries << country unless current_user.visited_countries.include?(country)
     else
       current_user.visited_countries.delete(country)
     end

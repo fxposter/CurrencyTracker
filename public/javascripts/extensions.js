@@ -8,4 +8,12 @@ Function.prototype.bind = function(scope) {
   return function() {
     return _function.apply(scope, arguments);
   }
+};
+
+String.prototype.lpad = function(padString, length) {
+  var str = this;
+  while (str.length < length) {
+    str = padString + str;
+  }
+  return str;
 }

@@ -8,6 +8,8 @@
       <div>Name: <input type="text" id="filter_currency_name"></div>
       <div><input type="submit" value="Collect"></div>
     </div>
+    
+    <div id="line_chart" style="height: 300px; clear: both; margin-bottom: 10px;"></div>
   
     <table id="currencies">
       <thead>
@@ -25,7 +27,7 @@
             <td><%= check_tag currency.country_id, current_user.collected?(currency) %></td>
             <td class="name"><%= currency.name %></td>
             <td><%= currency.code %></td>
-            <td class="status"><%= current_user.collected?(currency) ? 'Collected' : 'Not Collected' %></td>
+            <td class="status" data-visit-date="<%= current_user.visit_date(currency.country) %>"><%= current_user.collected?(currency) ? 'Collected' : 'Not Collected' %></td>
             <td><%= link_to 'Show', currency %></td>
           </tr>
         <% end %>

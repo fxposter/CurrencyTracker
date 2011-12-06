@@ -7,10 +7,19 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
-  has_and_belongs_to_many :visited_countries, :join_table => 'visits', :class_name => 'Country', :association_foreign_key => 'country_code'
+  has_many :visits
+  has_many :visited_countries, :through => :visits, :source => :country
   
   def visited?(country)
-    visited_countries.include?(country)
+    visit_into(country).present?
+  end
+  
+  def visit_date(country)
+     visit_into(country).try(:created_at).try(:to_date)
+  end
+  
+  def visit_into(country)
+    visits.detect { |v| v.country_code == country.id }
   end
   
   def collected?(currency)

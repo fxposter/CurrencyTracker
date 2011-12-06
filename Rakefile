@@ -4,4 +4,8 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
+class CurrencyTracker::Application
+  include Rake::DSL
+end
+
 CurrencyTracker::Application.load_tasks

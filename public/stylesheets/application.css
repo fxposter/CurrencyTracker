@@ -2,3 +2,66 @@
   clear: both;
   margin: 10px 0;
 }
+
+      .graphContainer {
+        width: 968px;
+        margin: 0;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: inherit;
+      }
+      
+      .sparkline {
+        display: inline-block;
+        width: 100px;
+        height: 20px;
+        vertical-align: middle;
+      }
+      
+      .sparkline div { display: inline-block; }
+      
+      .bulletgraph {
+        display: inline-block;
+        width: 100px;
+        height: 20px;
+        vertical-align: middle;
+      }
+      
+      .bulletgraph_with_value_labels {
+        display: inline-block;
+        width: 200px;
+        height: 40px;
+        vertical-align: middle;
+        margin-bottom: 20px;
+      }
+      
+      .bulletgraph div { display: inline-block; }
+      
+      .leftGraph {
+        clear: both;
+        float: left;
+        width: 480px;
+	height: 280px;
+	margin: 2px;
+        background-color: inherit
+      }
+      
+      .rightGraph {
+        float: left;
+        width: 480px;
+	height: 280px;
+	margin: 2px;
+      }
+      
+      #legend {
+        text-align: center;
+      }
+      
+      .legend {
+        width: 140px;
+        border-bottom: 2px solid;
+      }
+      
+      #ico_version, #raphael_version, #raphael_mode {
+        color: red;
+      }
