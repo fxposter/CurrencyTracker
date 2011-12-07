@@ -57,7 +57,7 @@ LineChart.initialize = function(root, table) {
     render: function() {
       var dates = this.getDatesFromTable(this.table);
       var keys_and_values = this.makeKeysAndValues(dates);
-      if (keys_and_values[0].length > 1) {
+      if (keys_and_values[0].length >= 1) {
         this.root.show().empty();
         new Ico.LineGraph(this.root.attr('id'),
           [keys_and_values[1]],
