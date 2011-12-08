@@ -7,4 +7,8 @@ module ApplicationHelper
   def check_tag(country_id, value)
     check_box_tag 'country_ids[]', country_id, value, :class => 'check', :id => "country_#{country_id}"
   end
+  
+  def formatted_date(date)  
+    date.to_formatted_s(:rfc822) if date
+  end
 end

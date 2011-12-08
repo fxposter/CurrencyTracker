@@ -26,22 +26,6 @@ class User < ActiveRecord::Base
     visited?(currency.country)
   end
   
-  def visited_countries_count
-    visited_countries.count
-  end
-  
-  def not_visited_countries_count
-    Country.count - visited_countries_count
-  end
-  
-  def collected_currencies_count
-    Currency.where(:country_id => visited_country_ids).count
-  end
-  
-  def not_collected_currencies_count
-    Currency.count - collected_currencies_count
-  end
-  
   def to_s
     email
   end

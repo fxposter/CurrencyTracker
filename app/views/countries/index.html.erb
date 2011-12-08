@@ -4,12 +4,13 @@
   <h1>Countries</h1>
   
   <%= form_tag bulk_update_visits_path, :method => :put, :id => 'visits_form' do %>
-    <div class="filter">
-      <div>Name: <input type="text" id="filter_country_name"></div>
-      <div><input type="submit" value="Visit"></div>
-    </div>
-    
     <div id="line_chart" style="height: 300px; clear: both; margin-bottom: 10px;"></div>
+    
+    <div class="filter">
+      <div><input type="submit" value="Visit selected countries"></div>
+      or
+      <div>filter countries by name: <input type="text" id="filter_country_name"></div>
+    </div>
     
     <table id="countries">
       <thead>
@@ -29,7 +30,8 @@
             <td><%= check_tag country.id, current_user.visited?(country) %></td>
             <td class="name"><%= country.name %></td>
             <td><%= country.code %></td>
-            <td class="status" data-visit-date="<%= current_user.visit_date(country) %>"><%= current_user.visited?(country) ? 'Visited' : 'Not Visited' %></td>
+            <td class="status" data-visit-date="<%= formatted_date current_user.visit_date(country)
+ %>"><%= current_user.visited?(country) ? 'Visited' : 'Not Visited' %></td>
             <td><%= link_to 'Show', country %></td>
             <td><%= link_to 'Edit', edit_country_visit_path(country) %></td>
           </tr>
