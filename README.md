@@ -13,7 +13,9 @@ Features
 Assumptions
 -----------
 * Currencies and countries tables are shared between users, cause if these tables are modified we need to change them only once, not per user.
-* Login is implemented through email, there's no separate username field.
+* User can login through email.
+* User should not see line chart when there is no visited countries / collected currencies.
+* Line chart should group user's travels by month.
 
 Possible technical enhancements
 -------------------------------
